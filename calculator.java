@@ -12,9 +12,10 @@ public class calculator {
 		
 		while (again == true) {
          
-            System.out.println("Enter '+' for addition, '-' for subtractions, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
-            String operation = Argus.next();
             while (operator == true) {
+            	System.out.println("Enter '+' for addition, '-' for subtractions, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
+                String operation = Argus.next();
+                
                if (operation.equals("+")) { 
             	   System.out.println("How many numbers do you want to add?");
             	   
@@ -83,8 +84,6 @@ public class calculator {
          
                else { 
                   System.out.println("Invalid operator " + operation);
-                  System.out.println("Enter '+' for addition, '-' for subtractions, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
-                  operation = Argus.nextLine();
                }
             }
             
@@ -119,14 +118,36 @@ public class calculator {
    
    public static void array () {
    	
-     int number = Argus.nextInt();
-     numberArray = new double [number];
+	   boolean error = true;
+	   String number = Argus.next();
+	   int num = 0;
+	   double nums = 0;
+	   while (error == true) {
+		   try {
+			   num = Integer.parseInt(number);
+			   error = false;
+		   }
+		   catch(NumberFormatException e) {
+			   System.out.println("Input a number above 0");
+			   number = Argus.next();
+		   }
+	   }
+	   
+     numberArray = new double [num];
 
-	 System.out.println("Enter " +number+ " numbers");
+	 System.out.println("Enter " +num+ " numbers");
 
-     for (int i = 0; i < number;i++) {
-            numberArray[i] = Argus.nextDouble();
-        }
+     for (int i = 0; i < num;i++) {
+         number = Argus.next();
+         try {
+        	 nums = Double.parseDouble(number);
+        	 numberArray[i] = nums;
+         }
+         catch(NumberFormatException e) {
+        	System.out.println("Input a number");
+        	i--;
+         }
+     }
      
    }
    
