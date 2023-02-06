@@ -1,114 +1,25 @@
 import java.util.Scanner;
 
 public class calculator {
+	
+	public static double[] numberArray;
+	static Scanner Argus = new Scanner(System.in);
+	
    public static void main (String[] args) {
-      Scanner Argus = new Scanner(System.in);
-      String scifi = "Scientific";
-		String stand = "Standard";
-		boolean operator = true;
+      
+      boolean operator = true;
 		boolean again = true;
 		
 		while (again == true) {
-         System.out.println("Enter the calculator mode: Standard/Scientific?");
-         String mode = Argus.next();
-      
-         boolean standard = stand.equalsIgnoreCase(mode);
-         boolean sci = scifi.equalsIgnoreCase(mode);
-      
          
-         if (standard == true) {
-            System.out.println("The calculator will operate in standard mode.");
-            System.out.println("Enter '+' for addition, '-' for subtractions, '*' for multiplication, '/' for division");
-            String operation = Argus.next();
-         
-            while (operator == true) {
-               if (operation.equals("+")) { 
-    	            System.out.println("How many numbers do you want to add?");
-    	
-    	            int number = Argus.nextInt();
-    	            double[] numberArray = new double [number];
-    	
-            	   System.out.println("Enter " + number + " numbers");
-    	
-                  for (int i = 0; i < number;i++) {
-    		            numberArray[i] = Argus.nextDouble();
-    	            }
-    	            double result = addition(numberArray);
-    	            System.out.println("Result: "+ result);
-    	            operator = false;
-               }
-               else if (operation.equals("-")) {
-                  System.out.println("How many numbers do you want to subtract?");
-               
-                  int number = Argus.nextInt();
-                  double[] numberArray = new double [number];
-               
-                  System.out.println("Enter " + number+ " numbers");
-               
-                  for (int i = 0; i < number; i++) {
-                     numberArray[i] = Argus.nextDouble();
-                  }
-                  double result = subtraction(numberArray);
-                  System.out.println("Result: " + result);
-                  operator = false;
-               }
-         
-               else if (operation.equals("*")) {
-                  System.out.println("How many numbers do you want to multiply?");
-               
-                  int number = Argus.nextInt();
-                  double[] numberArray = new double [number];
-               
-                  System.out.println("Enter " + number + " numbers");
-               
-                  for (int i = 0; i < number; i++) {
-                     numberArray[i] = Argus.nextDouble();
-                  }
-                  double result = multiply(numberArray);
-                  System.out.println("Result: " + result);
-                  operator = false;
-               }
-         
-               else if (operation.equals("/")) {
-                  System.out.println("How many numbers do you want to divide?");
-            
-                  int number = Argus.nextInt();
-                  double[]numberArray = new double [number];
-            
-                  System.out.println("Enter "+ number + " numbers");
-            
-                  for (int i = 0; i<number; i++) {
-                     numberArray[i] = Argus.nextDouble();
-                  }
-                  double result = division(numberArray);
-                  System.out.println("Result: " + result);
-                  operator = false;
-               }
-         
-               else { 
-                  System.out.println("Invalid operator " + operation);
-                  System.out.println("Enter '+' for addition, '-' for subtractions, '*' for multiplication, '/' for division");
-                  operation = Argus.next();
-               }
-            }
-         }
-         
-         if (sci == true) {
-            System.out.println("The calculator will operate in scientific mode.");
             System.out.println("Enter '+' for addition, '-' for subtractions, '*' for multiplication, '/' for division, 'sin' for sin x, 'cos' for cos x, 'tan' for tan x:");
             String operation = Argus.next();
             while (operator == true) {
                if (operation.equals("+")) { 
-    	           System.out.println("How many numbers do you want to add?");
-    	
-    	           int number = Argus.nextInt();
-    	           double[] numberArray = new double [number];
-    	
-            	  System.out.println("Enter" +number+ " numbers");
-    	
-                 for (int i = 0; i < number;i++) {
-    		            numberArray[i] = Argus.nextDouble();
-    	            }
+            	   System.out.println("How many numbers do you want to add?");
+            	   
+            	   array();
+            	   
     	            double result = addition(numberArray);
     	            System.out.println("Result: "+ result);
     	            operator = false;
@@ -116,14 +27,8 @@ public class calculator {
                else if (operation.equals("-")) {
                   System.out.println("How many numbers do you want to subtract?");
                
-                  int number = Argus.nextInt();
-                  double[] numberArray = new double [number];
-               
-                  System.out.println("Enter " + number + " numbers");
-               
-                  for (int i = 0; i < number; i++) {
-                     numberArray[i] = Argus.nextDouble();
-                  }
+                  array();
+                  
                   double result = subtraction(numberArray);
                   System.out.println("Result: " + result);
                   operator = false;
@@ -132,14 +37,8 @@ public class calculator {
                else if (operation.equals("*")) {
                   System.out.println("How many numbers do you want to multiply?");
                
-                  int number = Argus.nextInt();
-                  double[] numberArray = new double [number];
-               
-                  System.out.println("Enter" + number + " numbers");
-               
-                  for (int i = 0; i < number; i++) {
-                     numberArray[i] = Argus.nextDouble();
-                  }
+                 array();
+                 
                   double result = multiply(numberArray);
                   System.out.println("Result: " + result);
                   operator = false;
@@ -148,14 +47,8 @@ public class calculator {
                else if (operation.equals("/")) {
                   System.out.println("How many numbers do you want to divide?");
             
-                  int number = Argus.nextInt();
-                  double[]numberArray = new double [number];
-            
-                  System.out.println("Enter " + number + " numbers");
-            
-                  for (int i = 0; i<number; i++) {
-                  numberArray[i] = Argus.nextDouble();
-                  }
+                  array();
+                  
                   double result = division(numberArray);
                   System.out.println("Result: " + result);
                   operator = false;
@@ -194,7 +87,7 @@ public class calculator {
                   operation = Argus.nextLine();
                }
             }
-         }
+            
         System.out.println("Do you want to start over? (Y/N)");
         String Determination = Argus.next();
         
@@ -223,6 +116,20 @@ public class calculator {
       }
 		Argus.close();
    }
+   
+   public static void array () {
+   	
+     int number = Argus.nextInt();
+     numberArray = new double [number];
+
+	 System.out.println("Enter " +number+ " numbers");
+
+     for (int i = 0; i < number;i++) {
+            numberArray[i] = Argus.nextDouble();
+        }
+     
+   }
+   
    public static double addition(double [] numberArray) {
 	   double sum = numberArray[0];
 	   for (int i = 1; i<numberArray.length; i++) {
@@ -230,6 +137,7 @@ public class calculator {
 	   }
 	   return sum;
    }
+   
    public static double subtraction(double[]numberArray) {
       double difference = numberArray[0];
       for (int i = 1; i<numberArray.length; i++) {
@@ -237,6 +145,7 @@ public class calculator {
       }
       return difference;
    }
+   
    public static double multiply(double[]numberArray) {
       double multi = numberArray[0];
       for (int i = 1; i<numberArray.length; i++) {
@@ -244,6 +153,7 @@ public class calculator {
       }
       return multi;
    }
+   
    public static double division(double [] numberArray) {
       double divis = numberArray[0];
       for (int i = 1; i<numberArray.length; i++) {
@@ -251,12 +161,15 @@ public class calculator {
       }
       return divis;
    }
+   
    public static double sinne(double sin) {
       return Math.sin(sin);
    }
+   
    public static double cosine(double cos) {
       return Math.cos(cos);
    }
+   
   public static double tangent(double tan) {
       return Math.tan(tan);
    }
